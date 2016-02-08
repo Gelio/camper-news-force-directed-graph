@@ -22,5 +22,9 @@ function prepareGraph() {
 function drawData(data) {
     var processed = processData(data);
 
+    processed.domains.forEach((function(domain) {
+
+    }).bind(this));
+
     // Add nodes and links
 }
