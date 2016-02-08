@@ -1,0 +1,20 @@
+.link {
+  stroke: black;
+}
+
+.node {
+  cursor: pointer;
+}
+
+.chart-tooltip {
+  display: none;
+  position: fixed;
+
+  padding: 1em;
+  background-color: gold;
+  border: 1px solid;
+
+  &.visible {
+    display: block;
+  }
+}
