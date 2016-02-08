@@ -14,7 +14,12 @@ var config = {
     tooltipOffset: {
         top: 20,
         left: 20
-    }
+    },
+    minRadius: 4,
+    radiusMultiplier: 3,
+    imageSize: 26
 };
 
 module.exports = config;
+
+config.imageSizeHalved = config.imageSize/2;

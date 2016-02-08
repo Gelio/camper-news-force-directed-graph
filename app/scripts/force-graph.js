@@ -65,11 +65,27 @@ function drawData(data) {
 
     var node = this.chart.selectAll('.node')
         .data(nodes).enter()
-        .append('circle')
+        .append('g')
         .attr('class', 'node')
-        .attr('r', function(d) { return Math.max(d.weight * 3, 4); })
-        .attr('fill', function(d) { return (d.domain ? 'blue' : 'red'); })
         .call(this.forceLayout.drag);
+
+    node.each(function(d, i) {
+        if(d.domain) {
+            d3.select(this).append('circle')
+                .attr('cx', 0)
+                .attr('cy', 0)
+                .attr('r', Math.max(d.weight * config.radiusMultiplier, config.minRadius))
+                .attr('fill', 'blue');
+        }
+        else {
+            d3.select(this).append('image')
+                .attr('xlink:href', d.user.picture)
+                .attr('x', -config.imageSizeHalved)
+                .attr('y', -config.imageSizeHalved)
+                .attr('width', config.imageSize)
+                .attr('height', config.imageSize);
+        }
+    });
 
     node.on('mousemove', displayTooltip.bind(this));
     node.on('mouseout', hideTooltip.bind(this));
@@ -86,8 +102,7 @@ function forceTick(node, link) {
             .attr("x2", function(d) { return d.target.x; })
             .attr("y2", function(d) { return d.target.y; });
 
-        node.attr('cx', function(d) { return d.x; })
-            .attr('cy', function(d) { return d.y; })
+        node.attr('transform', function(d) { return 'translate(' + d.x + ', ' + d.y + ')'; });
     }
 }
 
