@@ -1,6 +1,6 @@
 var config = {
-    width: 900,
-    height: 600,
+    width: 700,
+    height: 700,
     dataURL: 'http://www.freecodecamp.com/news/hot',
     forceLayout: {
         linkStrength: 0.3,
